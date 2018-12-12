@@ -1,7 +1,7 @@
 - hosts:
     - local_ci
     - operator_user
-  remote_user: {{ process_execution_user }}
+  remote_user: "{{ process_execution_user }}"
   connection: local
   roles:
     - app.common
@@ -11,7 +11,7 @@
 - hosts:
     - local_app
     - staging_app
-  remote_user: {{ process_execution_user }}
+  remote_user: "{{ process_execution_user }}"
   roles:
     - app.common
     - geerlingguy.git

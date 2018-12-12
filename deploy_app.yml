@@ -1,6 +1,6 @@
 - hosts:
     - local_app
     - staging_app
-  remote_user: {{ process_execution_user }}
+  remote_user: "{{ process_execution_user }}"
   roles:
     - app.deploy-app
