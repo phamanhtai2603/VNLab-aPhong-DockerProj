@@ -2,5 +2,5 @@ env: staging
 process_execution_user: operator_user
 
 user_home: /home/{{ process_execution_user }}
-docker_user: {{ process_execution_user }}
+docker_user: "{{ process_execution_user }}"
 build_dir : "{{ user_home }}/build_dir"
