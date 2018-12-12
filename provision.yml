@@ -1,6 +1,7 @@
 - hosts:
     - local_ci
-  remote_user: operator_user
+    - operator_user
+  remote_user: {{ process_execution_user }}
   connection: local
   roles:
     - app.common
@@ -9,16 +10,19 @@
 
 - hosts:
     - local_app
-  remote_user: operator_user
+    - staging_app
+  remote_user: {{ process_execution_user }}
   roles:
     - app.common
     - geerlingguy.git
     - geerlingguy.docker
 
-# Already installed in hosts
-# - hosts: all
-#   roles:
-#     - weareinteractive.docker-compose
-#   vars:
-#     docker_compose_version: 1.21.0
-#     docker_compose_pip_version: pip #pip==9.0.3
+- hosts:
+    - local_app
+    - staging_app
+  roles:
+    - weareinteractive.docker-compose
+  vars:
+    docker_compose_version: 1.21.0
+    docker_compose_pip_version: pip #pip==9.0.3
+

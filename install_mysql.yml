@@ -1,5 +1,13 @@
 - hosts:
     - local_db
-  remote_user: operator_user
+    - staging_app
+  remote_user: {{ process_execution_user }}
+  roles:
+    - app.mysql
+
+- hosts:
+    - local_db
+    - staging_db
+  remote_user: {{ process_execution_user }}
   roles:
     - app.mysql

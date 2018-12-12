@@ -1,5 +1,0 @@
-- hosts:
-    - staging_app
-  remote_user: operator_user
-  roles:
-    - app.deploy-app
