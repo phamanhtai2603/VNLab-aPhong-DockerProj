@@ -9,7 +9,7 @@
 
 - name: make data store dir
   file:
-    dest="/home/vagrant/mysql/db_data"
+    dest="{{ user_home }}/mysql/db_data"
     owner="{{process_execution_user}}"
     group="{{process_execution_user}}"
     state=directory
