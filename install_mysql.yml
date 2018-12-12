@@ -1,5 +1,5 @@
 - hosts:
     - local_db
-  remote_user: vagrant
+  remote_user: operator_user
   roles:
     - app.mysql
