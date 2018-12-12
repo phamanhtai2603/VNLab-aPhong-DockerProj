@@ -24,10 +24,10 @@
     - { src: "docker-compose.yml", dest: "{{ user_home }}/mysql/docker-compose.yml" }
 
 - name: docker-compose restart
+  become_user: "{{ process_execution_user }}"
   command: "{{ item }}"
   args:
     chdir: "{{ user_home }}/mysql"
   with_items:
     - "docker-compose down"
-    - "service docker restart"
     - "docker-compose up -d"

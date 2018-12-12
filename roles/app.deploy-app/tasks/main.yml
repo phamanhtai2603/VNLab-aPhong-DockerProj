@@ -75,6 +75,7 @@
     - { src: "code/index.php", dest: "/usr/share/code/" }
 
 - name: docker-compose restart
+  become_user: "{{ process_execution_user }}"
   command: "{{ item }}"
   args:
     chdir: "{{ user_home }}/app"
