@@ -5,7 +5,7 @@ services:
      image: mysql:5.7
      container_name: mysql
      volumes:
-       - /home/vagrant/mysql/db_data:/var/lib/mysql
+       - /home/{{ process_execution_user }}/mysql/db_data:/var/lib/mysql
      restart: always
      environment:
        MYSQL_ROOT_PASSWORD: Mypass1!
