@@ -1,0 +1,5 @@
+- hosts:
+    - staging_db
+  remote_user: operator_user
+  roles:
+    - app.mysql

@@ -1,0 +1,16 @@
+[staging_ci]
+192.168.10.2
+
+[staging_app]
+192.168.10.1
+
+[staging_db]
+192.168.10.2
+
+[all:children]
+staging_ci
+staging_app
+
+[staging:children]
+staging_ci
+staging_app
