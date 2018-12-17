@@ -18,10 +18,10 @@ mkdir log
 cd ansible-playbook
 ansible-playbook -i hosts.staging provision.yml --become
 
-# install mysql by docker-compser
+# install mysql by docker-compose
 ansible-playbook -i hosts.staging install_mysql.yml --become
 
-# install nginx-php-fpm by docker-compser
+# install nginx-php-fpm by docker-compose
 ansible-playbook -i hosts.staging deploy_app.yml --become
 
 #Confirm start web: Browser
