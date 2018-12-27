@@ -1,0 +1,320 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.4
+-- https://www.phpmyadmin.net/
+--
+-- Máy chủ: db
+-- Thời gian đã tạo: Th12 27, 2018 lúc 04:30 AM
+-- Phiên bản máy phục vụ: 5.7.24
+-- Phiên bản PHP: 7.2.13
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Cơ sở dữ liệu: `my_database`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` int(11) NOT NULL,
+  `admin_name` char(5) NOT NULL,
+  `admin_email` char(50) NOT NULL,
+  `admin_password` char(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_email`, `admin_password`) VALUES
+(1, 'admin', 'admin@gmail.com', 'admin'),
+(2, 'admin', 'admin@gmail.com', 'admin'),
+(3, 'ad3', 'admin3@gmail.com', 'admin3');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `blog`
+--
+
+CREATE TABLE `blog` (
+  `blog_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `blog_status_id` int(11) NOT NULL,
+  `feedback_status_id` int(11) NOT NULL,
+  `blog_content` varchar(21000) NOT NULL,
+  `blog_image` text,
+  `blog_view_count` int(11) DEFAULT NULL,
+  `sub_category_id` int(11) NOT NULL,
+  `comment_id` int(11) DEFAULT NULL,
+  `created_at` date NOT NULL,
+  `update_at` date NOT NULL,
+  `feedback_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `blog_status`
+--
+
+CREATE TABLE `blog_status` (
+  `blog_status_id` int(11) NOT NULL,
+  `blog_status_block` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `categogy`
+--
+
+CREATE TABLE `categogy` (
+  `categogy_id` int(11) NOT NULL,
+  `categogy_title` varchar(100) NOT NULL,
+  `categogy_content` varchar(21000) NOT NULL,
+  `created_at` date NOT NULL,
+  `update_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `comment`
+--
+
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `comment_content` varchar(21000) NOT NULL,
+  `created_at` date NOT NULL,
+  `update_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `feedback_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `blog_id` int(11) NOT NULL,
+  `feedback_content` varchar(21000) NOT NULL,
+  `created_at` date NOT NULL,
+  `update_at` date NOT NULL,
+  `feedback_status_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `feedback_status`
+--
+
+CREATE TABLE `feedback_status` (
+  `feedback_status_id` int(11) NOT NULL,
+  `feedback_status_name` char(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `image`
+--
+
+CREATE TABLE `image` (
+  `img_id` int(11) NOT NULL,
+  `img_name` char(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `sub_category`
+--
+
+CREATE TABLE `sub_category` (
+  `sub_category_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `sub_category_title` varchar(100) NOT NULL,
+  `sub_categogy_content` varchar(21000) NOT NULL,
+  `created_at` date NOT NULL,
+  `update_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user`
+--
+
+CREATE TABLE `user` (
+  `user_id` int(11) NOT NULL,
+  `user_name` char(50) NOT NULL,
+  `email` char(50) NOT NULL,
+  `password` char(50) NOT NULL,
+  `created_at` date NOT NULL,
+  `update_at` date NOT NULL,
+  `user_status_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `user`
+--
+
+INSERT INTO `user` (`user_id`, `user_name`, `email`, `password`, `created_at`, `update_at`, `user_status_id`) VALUES
+(1, 'user1', 'user1@gmail.com', 'user1', '2018-12-18', '2018-12-02', 1),
+(2, 'user2', 'user2@gmail.com', 'user2', '2018-12-18', '2018-12-02', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `user_status`
+--
+
+CREATE TABLE `user_status` (
+  `user_status_id` int(11) NOT NULL,
+  `user_status_name` char(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Đang đổ dữ liệu cho bảng `user_status`
+--
+
+INSERT INTO `user_status` (`user_status_id`, `user_status_name`) VALUES
+(1, 'Online');
+
+--
+-- Chỉ mục cho các bảng đã đổ
+--
+
+--
+-- Chỉ mục cho bảng `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
+
+--
+-- Chỉ mục cho bảng `blog`
+--
+ALTER TABLE `blog`
+  ADD PRIMARY KEY (`blog_id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `blog_status_id` (`blog_status_id`),
+  ADD KEY `feedback_status_id` (`feedback_status_id`),
+  ADD KEY `comment_id` (`comment_id`),
+  ADD KEY `feedback_id` (`feedback_id`),
+  ADD KEY `sub_category_id` (`sub_category_id`);
+
+--
+-- Chỉ mục cho bảng `blog_status`
+--
+ALTER TABLE `blog_status`
+  ADD PRIMARY KEY (`blog_status_id`);
+
+--
+-- Chỉ mục cho bảng `categogy`
+--
+ALTER TABLE `categogy`
+  ADD PRIMARY KEY (`categogy_id`);
+
+--
+-- Chỉ mục cho bảng `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
+-- Chỉ mục cho bảng `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`feedback_id`),
+  ADD KEY `feedback_status_id` (`feedback_status_id`),
+  ADD KEY `user_id` (`user_id`);
+
+--
+-- Chỉ mục cho bảng `feedback_status`
+--
+ALTER TABLE `feedback_status`
+  ADD PRIMARY KEY (`feedback_status_id`);
+
+--
+-- Chỉ mục cho bảng `image`
+--
+ALTER TABLE `image`
+  ADD PRIMARY KEY (`img_id`);
+
+--
+-- Chỉ mục cho bảng `sub_category`
+--
+ALTER TABLE `sub_category`
+  ADD PRIMARY KEY (`sub_category_id`),
+  ADD KEY `category_id` (`category_id`);
+
+--
+-- Chỉ mục cho bảng `user`
+--
+ALTER TABLE `user`
+  ADD PRIMARY KEY (`user_id`),
+  ADD KEY `user_status_id` (`user_status_id`);
+
+--
+-- Chỉ mục cho bảng `user_status`
+--
+ALTER TABLE `user_status`
+  ADD PRIMARY KEY (`user_status_id`);
+
+--
+-- Các ràng buộc cho các bảng đã đổ
+--
+
+--
+-- Các ràng buộc cho bảng `blog`
+--
+ALTER TABLE `blog`
+  ADD CONSTRAINT `blog_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`),
+  ADD CONSTRAINT `blog_ibfk_2` FOREIGN KEY (`blog_status_id`) REFERENCES `blog_status` (`blog_status_id`),
+  ADD CONSTRAINT `blog_ibfk_3` FOREIGN KEY (`feedback_status_id`) REFERENCES `feedback_status` (`feedback_status_id`),
+  ADD CONSTRAINT `blog_ibfk_4` FOREIGN KEY (`comment_id`) REFERENCES `comment` (`comment_id`),
+  ADD CONSTRAINT `blog_ibfk_5` FOREIGN KEY (`feedback_id`) REFERENCES `feedback` (`feedback_id`),
+  ADD CONSTRAINT `blog_ibfk_6` FOREIGN KEY (`sub_category_id`) REFERENCES `sub_category` (`sub_category_id`);
+
+--
+-- Các ràng buộc cho bảng `feedback`
+--
+ALTER TABLE `feedback`
+  ADD CONSTRAINT `feedback_ibfk_1` FOREIGN KEY (`feedback_status_id`) REFERENCES `feedback_status` (`feedback_status_id`),
+  ADD CONSTRAINT `feedback_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
+
+--
+-- Các ràng buộc cho bảng `sub_category`
+--
+ALTER TABLE `sub_category`
+  ADD CONSTRAINT `sub_category_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categogy` (`categogy_id`);
+
+--
+-- Các ràng buộc cho bảng `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`user_status_id`) REFERENCES `user_status` (`user_status_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
